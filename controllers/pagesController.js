@@ -1,5 +1,5 @@
 //这个模块主要用于返回用户所请求的页面
-
+var querystring=require('querystring')
 //约定:所有的后台页面请求都添加/admin
 
 
@@ -13,6 +13,30 @@ exports.getDetailPage=(req,res)=>{
 exports.getListPage=(req,res)=>{
     res.render('list.ejs')
 };
+
+
+exports.getAdminIndexPage=(req,res)=>{
+    if(req.session.isLogin&&req.session.isLogin=='true'){
+        res.render('admin/index.ejs')
+    }else{
+        res.writeHead(301,{
+            'Location':'/admin/login'
+        })
+        res.end()
+    }
+
+    // var mycookie = querystring.parse(req.headers.cookie)
+    // if(mycookie.isLogin && mycookie.isLogin == 'true'){
+    //     res.render('/admin')
+    // }else{
+    //     console.log(123)
+    //     // res.redirect('/admin/login')
+    //     res.writeHead(301,{
+    //         'Location':'/admin/login'
+    //     })
+    //     res.end()
+    // }
+}
 
 
 //后台管理页面
