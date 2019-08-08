@@ -4,7 +4,8 @@ const express = require('express');
 //添加路由配置
 const userController = require('./controllers/userController');
 const pagesController = require('./controllers/pagesController');
-const postController=require('./controllers/postController')
+const postController = require('./controllers/postController');
+const cateController = require('./controllers/cateController.js')
 var router = express.Router()
 //后台页面
 router.get('/admin', pagesController.getAdminIndexPage)
@@ -25,8 +26,8 @@ router.get('/admin', pagesController.getAdminIndexPage)
     .get('/list', pagesController.getListPage)
     //业务处理路由
     .post('/login', userController.login)
-    .get('/getAllPost',postController.getAllPost)
-
+    .get('/getAllPost', postController.getAllPost)
+    .get('/getAllCate',cateController.getAllCate)
 //暴露
 module.exports = router
 
